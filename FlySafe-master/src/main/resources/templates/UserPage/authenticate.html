@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>FlySafe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- setup Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- link CSS file-->
+  <link rel="stylesheet" href="/CSS/FlySafe.css">
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>FlySafe</h1>
+    <h5>The safest choice for booking flights.</h5>
+  </div>
+  <h4>Two-Factor Authentication</h4>
+  <form action="#" th:action="@{/submitTwoFactorForm}" method="post" class="px-4 py-3">
+  	<input type="hidden" id="authCode" name="authCode" th:value="${authCode}">
+    <div class="form-group">
+      <label for="email">Enter the code texted to <span th:text="${user.getPhoneNum()}"></span></label>
+      <input type="text" class="form-control form-control-sm" id="code" name="code" th:value="${code}" maxlength="6" pattern="\d{6}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</body>

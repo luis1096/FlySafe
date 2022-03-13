@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>FlySafe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- setup Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- link CSS file-->
+  <link rel="stylesheet" href="/CSS/FlySafe.css">
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>FlySafe</h1>
+    <h5>The safest choice for booking flights.</h5>
+    <span>
+      <a href="/home" class="btn btn-light">Home</a>
+      <a href="/searchflights" class="btn btn-light">Search Flights</a>
+    </span>
+  </div>
+<body>
+  <h4>My Profile</h4>
+  <p>Name: <span th:text="${user.getFirstName()}"></span> <span th:text="${user.getLastName()}"></span></br>
+     Phone Number: <span th:text="${user.getPhoneNum()}"></span></br>
+     Email Address: <span th:text="${user.getEmail()}"></span></br>
+     Reward Points: <span th:text="${user.getRewardPoints()}"></span></br>
+     <a href="/accountsettings"> Manage Account Settings</a></p>
+  <h5>Booked Flights</h5>
+    <div class="container" th:unless="${(bookings == null) or bookings.empty}">
+	<table class="table table-hover">
+      <thead>
+        <tr>
+       	  <th>Date</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Airline</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="booking : ${bookings}">
+          <td th:text="${#dates.format(booking.getFlight().getDateTime(), 'dd-MM-yyyy HH:mm')}"></td>
+          <td th:text="${booking.getFlight().getDepCity()}"></td>
+          <td th:text="${booking.getFlight().getArrCity()}"></td>
+          <td th:text="${booking.getFlight().getAirline()}"></td>
+          <td><a th:href="@{/viewbooking(id=${booking.getBookingID()})}" class="btn btn-primary">View Booking</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <h5>My Saved Cards</h5>
+    <div class="container" th:unless="${cards == null or cards.empty}">
+	<table class="table table-hover">
+      <thead>
+        <tr>
+       	  <th>Card Number</th>
+          <th>Expiration Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="card : ${cards}">
+          <td th:text="${card.getCardNum()}"></td>
+          <td th:text="${card.getExpDate()}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

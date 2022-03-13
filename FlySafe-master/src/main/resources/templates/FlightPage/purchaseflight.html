@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>FlySafe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- setup Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- link CSS file-->
+  <link rel="stylesheet" href="/CSS/FlySafe.css">
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>FlySafe</h1>
+    <h5>The safest choice for booking flights.</h5>
+    <span>
+      <a href="/home" class="btn btn-light">Home</a>
+      <a href="/myprofile" class="btn btn-light">View Profile</a>
+      <a href="/searchflights" class="btn btn-light">Search Flights</a>
+     </span>
+  </div>
+  <h4>Purchase Flight</h4>
+  <h5>Total Charges: $<span th:text="${#numbers.formatDecimal(flight.cost, 1, 2)}"></span></h5>
+  <form action="#" th:action="@{/submitPurchaseFlightForm}" method="post" class="px-4 py-3">
+    <input type="hidden" id="index" name="index" th:value="${index}">
+    <div class="form-group">
+      <label for="cardnum">Card Number</label>
+      <input type="text" class="form-control form-control-sm" id="cardnum" name="cardnum" maxlength="16" pattern="\d{16}" required>
+    </div>
+    <div class="form-group">
+      <label for="expdate">Expiration Date</label>
+      <input type="text" class="form-control form-control-sm" id="expdate" name="expdate" pattern="(0[1-9]|1[012])\/\d{2}" placeholder="MM/yy" required>
+    </div>
+    <div class="form-group">
+      <label for="cvc">Security Code</label>
+      <input type="password" class="form-control form-control-sm" id="cvc" name="cvc" maxlength="3" pattern="\d{3}" required>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" id="mask" name="options" th:value="mask"> Request Mask</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" id="sanitizer" name="options" th:value="sanitizer"> Request Sanitizer</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" id="emptyseat" name="options" th:value="emptyseat"> Request Empty Adjacent Seat</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" id="save" name="options" th:value="save"> Save Payment Info</label>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</body>
