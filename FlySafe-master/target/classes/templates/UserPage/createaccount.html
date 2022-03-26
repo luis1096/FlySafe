@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>FlySafe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- setup Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- link CSS file-->
+  <link rel="stylesheet" href="/CSS/FlySafe.css">
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>FlySafe</h1>
+    <h5>The safest choice for booking flights.</h5>
+  </div>
+  <h4>Create Account</h4>
+  <form action="#" th:action="@{/submitCreateAccountForm}" method="post" class="px-4 py-3">
+    <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" class="form-control form-control-sm" id="fname" name="fname" required>
+    </div>
+    <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" class="form-control form-control-sm" id="lname" name="lname" required>
+    </div>
+    <div class="form-group">
+        <label for="pnum">Phone Number</label>
+        <input type="tel" class="form-control form-control-sm" id="pnum" name="pnum" required >
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control form-control-sm" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control form-control-sm" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-success">Create Account</button>
+  </form>
+  <p>
+  Already have an account?   <a href="/login" class="btn btn-primary">Login</a>
+  </p>
+</body>

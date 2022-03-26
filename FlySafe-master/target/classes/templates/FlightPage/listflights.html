@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>FlySafe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- setup Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- link CSS file-->
+  <link rel="stylesheet" href="/CSS/FlySafe.css">
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>FlySafe</h1>
+    <h5>The safest choice for booking flights.</h5>
+    <span>
+      <a href="/home" class="btn btn-light">Home</a>
+      <a href="/myprofile" class="btn btn-light">View Profile</a>
+      <a href="/searchflights" class="btn btn-light">Search Flights</a>
+    </span>
+  </div>
+  <h4>Search Results</h4>
+  <div class="container">
+	<table class="table table-hover">
+      <thead>
+        <tr>
+       	  <th>Date</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Airline</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+	    <tr th:if="${flights.empty}">
+          <td colspan="2">No Flights matched the search criteria</td>   
+        </tr>
+        <tr th:each="flight, iter : ${flights}">
+          <td th:text="${#dates.format(flight.getDateTime(), 'dd-MM-yyyy HH:mm')}"></td>
+          <td th:text="${flight.getDepCity()}"></td>
+          <td th:text="${flight.getArrCity()}"></td>
+          <td th:text="${flight.getAirline()}"></td>
+          <td>$<span th:text="${#numbers.formatDecimal(flight.getCost(), 1, 2)}"></span></td>
+          <td><a th:href="@{/viewflight(index=${iter.index})}" class="btn btn-primary">View Details</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

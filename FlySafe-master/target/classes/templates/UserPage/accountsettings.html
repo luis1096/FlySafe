@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>FlySafe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- setup Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- link CSS file-->
+  <link rel="stylesheet" href="/CSS/FlySafe.css">
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>FlySafe</h1>
+    <h5>The safest choice for booking flights.</h5>
+    <span>
+      <a href="/home" class="btn btn-light">Home</a>
+      <a href="/myprofile" class="btn btn-light">View Profile</a>
+      <a href="/searchflights" class="btn btn-light">Search Flights</a>
+    </span>
+  </div>
+<body>
+  <h4>Account Settings</h4>
+  <p><span th:if="${user.getTwoFactorEnabled()}">Two-factor Authentication is enabled. <a href="/updateTwoFactorSettings">Disable Two-factor Authentication</a></span>
+     <span th:unless="${user.getTwoFactorEnabled()}">Two-factor Authentication is disabled. <a href="/updateTwoFactorSettings">Enable Two-factor Authentication</a></span>
+</body>
+</html>

@@ -1,0 +1,13 @@
+.jumbotron {
+    background-color: darkblue;
+    color: beige;
+    text-align: left;
+    background-image: url(https://simpleflying.com/wp-content/uploads/2020/08/United-airlines-plane-wearing-a-mask-1000x563.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right
+}
+
+#red {
+    color: red
+}

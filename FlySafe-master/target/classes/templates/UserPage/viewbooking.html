@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>FlySafe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- setup Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- link CSS file-->
+  <link rel="stylesheet" href="/CSS/FlySafe.css">
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>FlySafe</h1>
+    <h5>The safest choice for booking flights.</h5>
+    <span>
+      <a href="/home" class="btn btn-light">Home</a>
+      <a href="/myprofile" class="btn btn-light">View Profile</a>
+      <a href="/searchflights" class="btn btn-light">Search Flights</a>
+    </span>
+  </div>
+<body>
+  <h4>Booking Information</h4>
+  <p>Date/Time: <span th:text="${#dates.format(flight.getDateTime(), 'dd-MM-yyyy HH:mm')}"></span></br>
+     Source City: <span th:text="${flight.getDepCity()}"></span></br>
+     Destination City: <span th:text="${flight.getArrCity()}"></span></br>
+     Airline: <span th:text="${flight.getAirline()}"></span></br>
+     Price: $<span th:text="${#numbers.formatDecimal(flight.getCost(), 1, 2)}"></span></br>
+     Points:  <span th:text="${booking.getRewardPoints()}"></span></p>
+  <h5>COVID-19 Safety Options</h5>
+  <form action="#" th:action="@{/submitUpdateCOVIDOptionsForm}" method="post">
+    <input type="hidden" id="bookingid" name="bookingid" th:value="${booking.getBookingID()}">
+    <div class="checkbox">
+      <label><input type="checkbox" id="mask" name="options" th:value="mask" th:checked="${booking.getMaskRequested()}"> Request Mask</label>      
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" id="sanitizer" name="options" th:value="sanitizer" th:checked="${booking.getSanitizerRequested()}"> Request Sanitizer</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" id="emptyseat" name="options" th:value="emptyseat" th:checked="${booking.getEmptyAdjSeatRequested()}"> Request Empty Adjacent Seat</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Update COVID-19 Options</button>
+  </form>
+</body>
+</html>
